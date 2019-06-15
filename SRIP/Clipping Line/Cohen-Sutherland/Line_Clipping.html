@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Line Clipping -Cohen SutherLand</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="Codes/Style.css">
+		<script type="text/javascript" src="Codes/Cohen-Sutherland.js"></script>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
+	</head>
+
+	<body>
+		<div class='parent'>
+			<div c;ass='right'>
+				For a multiple line clipping animation<br>
+	   <a href="index.html" target="_parent"><button class='buttondec'align="right">Click me for a demo!</button class='buttondec' ></a><br>
+	       </div>
+	      </div>
+        <div class="row">
+		<h2>Clipping Line-Cohen SutherLand</h2>
+		<div class="column" id="c1">
+			<form>
+			<h3> A fast Line clipping algorithm</h3>
+		    Enter The Dimensions of Rectangle   <br>
+		 	Note - The Co-ordinates Entered should be of the principal diagonal of the Rectangle <br> <!-- Entered The Co-ordinates of the Rectangle--> 
+			Max value is (600,600) <br>
+			<input type="number" id='rx1' class="equipCatValidation">rx1   
+			<input type="number" id='ry1' class="equipCatValidation">ry1<br>  
+			<input type="number" id='rx2' class="equipCatValidation">rx2 
+			<input type="number" id='ry2' class="equipCatValidation">ry2 <br><br>
+			Enter the coordinates for the line to be clipped:<br> 
+			<input type="number" id="x1"  class="equipCatValidation">x1
+			<input type="number" id="y1"  class="equipCatValidation">y1<br>
+			<input type="number" id="x2"  class="equipCatValidation">x2
+			<input type="number" id="y2"  class="equipCatValidation">y2<br><br>
+			<button class="buttondec"  type="button" onclick="location.reload(false)">Initialise</button><br>
+			<button class="buttondec" type="button"onclick="init_square()">Bounding Square</button><br>
+			<button class="buttondec"  type="button" onclick="init_line()">Line</button><br>
+			Click on the right canvas to see the clipped part of the line<br>
+			The new line will be highlighted in green.<br>
+			<!--<button class='buttondec'  type="button class='buttondec' " onclick="iters()">Iterate</button class='buttondec' ><br>-->
+		</form>
+		<p id="Stmnt1"></p>
+		<p id="Stmnt2"></p>
+			<p id="movelog">Coordinates</p>
+			 <form><img src="Images/Axes.png" alt="Coordinate Axes"  style="width:300px;height:200px;padding-left:8px;"></form>
+		</div>
+		<div class="column" id="c2">
+			<canvas id="canvas"  width="600" height="600" style="border:2px solid #c3c3c3;"></canvas>
+			 <script src='https://code.jquery.com/jquery-1.12.1.min.js'></script>
+		    <script type="text/javascript" src="Codes/Cohen-Sutherland.js"></script>
+     </div>
+	</div>   
+	</body>
+
+</html>
