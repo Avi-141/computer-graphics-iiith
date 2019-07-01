@@ -1,4 +1,14 @@
+//prevent the user to input above max value of canvas
 
+$('.equipCatValidation').on('keydown keyup', function(e){
+    if ($(this).val() > 600
+        && e.keyCode !== 46 // keycode for delete
+        && e.keyCode !== 8 // keycode for backspace
+       ) {
+       e.preventDefault();
+       $(this).val(600);
+    }
+});
 //var canvas=document.getElementById("canvas");
 var context = canvas.getContext("2d");
 context.globalCompositeOperation = 'source-over';
