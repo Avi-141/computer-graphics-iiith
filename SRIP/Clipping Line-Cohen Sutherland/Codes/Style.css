@@ -61,4 +61,9 @@ canvas{
 
  .line{border-radius: 12px;
                background-color:yellow;}
- .line:hover{box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}sssss
+ .line:hover{box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
+
+
+ .grid{border-radius: 12px;
+               background-color:PeachPuff;}
+ .grid:hover{box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
