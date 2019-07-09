@@ -4,7 +4,7 @@
   clear: both;
 }
 /*Change the backgorund Color of Left Half*/ 
-#c1 {
+#c1{
 	background:ghostwhite;
 	width: 30%;
 }
@@ -18,17 +18,16 @@ h3{
   color:firebrick;
 }
 canvas{
-	background:#ffffff;
+	background:white;
   z-index:-1;
   
 }
-* {
+*{
   box-sizing: border-box;
 }
 .column {
   float: left;
   width: 25%;
-  padding: 8px;
 }
 .row1 {
         display: flex;

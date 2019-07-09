@@ -22,56 +22,40 @@
 		    Enter The Dimensions of Rectangle   <br>
 		 	Note - The Co-ordinates Entered should be of the principal diagonal of the Rectangle <br> <!-- Entered The Co-ordinates of the Rectangle--> 
 			Max value is (600,600) <br>
-			<input type="number" id='rx1' class="equipCatValidation">rx1   
-			<input type="number" id='ry1' class="equipCatValidation">ry1<br>  
-			<input type="number" id='rx2' class="equipCatValidation">rx2 
-			<input type="number" id='ry2' class="equipCatValidation">ry2 <br><br>
+			Default values to run the experiment have been assigned 
+			You can change the values as per your convinience.<br>
+			<input type="number" id='rx1' class="equipCatValidation" value="150">rx1   
+			<input type="number" id='ry1' class="equipCatValidation" value="150">ry1<br>  
+			<input type="number" id='rx2' class="equipCatValidation" value="450">rx2 
+			<input type="number" id='ry2' class="equipCatValidation" value="450">ry2 <br><br>
 			Enter the coordinates for the line to be clipped:<br> 
-			<input type="number" id="x1"  class="equipCatValidation">x1
-			<input type="number" id="y1"  class="equipCatValidation">y1<br>
-			<input type="number" id="x2"  class="equipCatValidation">x2
-			<input type="number" id="y2"  class="equipCatValidation">y2<br><br>
+			<input type="number" id="x1"  class="equipCatValidation" value="100">x1
+			<input type="number" id="y1"  class="equipCatValidation" value="130">y1<br>
+			<input type="number" id="x2"  class="equipCatValidation" value="500">x2
+			<input type="number" id="y2"  class="equipCatValidation" value="340">y2<br><br>
 			<button class="initt"  type="button" onclick="location.reload(false)">Initialise</button><br>
+			<!--<button class="grid" type="button" onclick="grid()">9 regions</button><br>-->
 			<button class="square" type="button"onclick="init_square()">Bounding Square</button><br>
 			<button class="line"  type="button" onclick="init_line()">Line</button><br>
-			<button class="grid" type="button" onclick="grid()">Grid View</button><br>
 			Click on the right canvas to see the clipped part of the line<br>
-			The new line will be highlighted in green.<br>
+			The clipped line will be highlighted in red.<br>
 			<!--<button class='buttondec'  type="button class='buttondec' " onclick="iters()">Iterate</button class='buttondec' ><br>-->
 		</form>
 		<p id="Stmnt1"></p>
 		<p id="Stmnt2"></p>
+		<p id="Stmnt3"></p>
+		<p id="Stmnt4"></p>
+		<p id="Stmnt5"></p>
+		<p id="Stmnt6"></p>
+		<p id="Stmnt7"></p>
+		<p id="Stmnt8"></p>
+		<p id="Stmnt9"></p>
 			<p id="movelog">Coordinates</p>
-			 <form><img src="Images/Axes.png" alt="Coordinate Axes"  style="width:300px;height:200px;padding-left:8px;"></form>
+			Outcodes for nine regions
+			<form><img src="Images/Regions.gif" alt="Outcodes"  style="width:300px;height:200px;padding-left:8px;"></form>
 		</div>
 		<div class="column" id="c2">
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-<!--<script>
-window.onload=function(){
-
-        var context = canvas.getContext("2d");
-context.globalCompositeOperation = 'source-over';
-
-
-for(let i=0;i<=600;i=i+200)
-{
-	
-	context.moveTo(i,0);
-	context.lineTo(i,600);
-	context.stroke();
-}
-
-for(let j=0;j<=600;j=j+200)
-{
-	
-	context.moveTo(0,j);
-	context.lineTo(600,j);
-	context.stroke();
-}
-}
-</script>-->
-
 			<canvas id="canvas"  width="600" height="600" style="border:2px solid #c3c3c3;"></canvas>
 			 <script src='https://code.jquery.com/jquery-1.12.1.min.js'></script>
 			 <script src='https://code.jquery.com/jquery-2.0.2.min.js'></script>
