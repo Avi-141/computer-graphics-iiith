@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clipping Polygon</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="CSSStyles.css"><!-- Linking the CSS file -->
+	
+</head>
+<body>
+	<div class='parent'>
+			
+		For a multiple line clipping demo<br><br>
+	   <a href="index.html" target="_parent"><button class="grid">Click me for a demo!</button></a><br>
+	      
+	      </div>
+	<div class="row">
+
+		<h2><center>Clipping Line-Cohen SutherLand Experiment</center></h2>
+	<div class="column" id="column1"> <!-- Dividing the Page into left part-->
+		<form>
+			Enter The Dimensions of Rectangle   <br>
+			(The coordinates should be diagonal endpoints)<br><br> 
+			Maximum permissible value is (500,500)<br><br>
+			Default values to run the experiment have been assigned<br>
+			You can change the values as per your convinience.<br><br>
+
+			<input type="number" id='x1s' value="100">rx1  
+			<input type="number" id='y1s' value="100">ry1 <br>  
+			<input type="number" id='x2s' value="400">rx2 
+			<input type="number" id='y2s' value="250">ry2 <br><br>
+			<br>
+			<input type="number" id="x1"  value="10">x1
+			<input type="number" id="y1"  value="50">y1<br><!--50 ,50-->
+			<input type="number" id="x2"  value="500">x2
+			<input type="number" id="y2" value="450">y2<br><br>
+			<!-- 10,60 and 500,340-->
+			<!--100,187 and 500,340-->
+			<!--100,50 and 500,340-->
+			<!--100,50 and 455,432-->
+			<!--100 50,500 450-->
+			<button type="button" class="buttondecor"onclick="update()";>Initialise</button><br>
+			<button type="button" class="initt" onclick="initial()">Cohen-Sutherland Experiment</button><br>
+			<button type="button" class="square" onclick="next_iteration()"> Next Iteration </button><br>
+			<button type="button" class="line" onclick="prev_iteration()"> Previous Iteration </button><br>
+			<!--<button type="button" class="square" onclick="next_iteration()"> Next Iteration </button><br>-->
+		</form>
+		<p id="Stmnt0"></p>
+		<p id="Stmnt1"></p>
+		<p id="Stmnt2"></p>
+		<p id="Stmnt3"></p>
+		<p id="Stmnt4"></p>
+		<p id="Stmnt5"></p>
+		<p id="Stmnt6"></p>
+		<p id="Stmnt7"></p>
+		<p id="Stmnt8"></p>
+		<p id="Stmnt9"></p>
+		<script src="support1.js"></script> <!-- Linking the Javascript File -->
+
+	</div>
+	<div class="column" id="column2">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+			<canvas id="Canvas"  width="600" height="600" style="border:2px solid #c3c3c3;"></canvas>
+			 <script src='https://code.jquery.com/jquery-1.12.1.min.js'></script>
+			 <script src='https://code.jquery.com/jquery-2.0.2.min.js'></script>
+
+		<script src="Cohen-Sutherland.js"></script> <!-- Linking the Javascript File -->
+	</div>
+	
+	</div>
+</body>
+</html>

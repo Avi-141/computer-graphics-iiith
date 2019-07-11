@@ -1,4 +1,5 @@
-"use strict";
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
 
 class Particle {
     constructor(x, y, vx, vy) {
@@ -65,10 +66,6 @@ function createRandomLines(numberOfLines) {
 
     return lines;
 }
-
-var canvas = document.querySelector("canvas");
-var ctx = canvas.getContext("2d");
-
 var factor = getFactor();
 
 var lines = createRandomLines(10);
