@@ -4,7 +4,7 @@ context.globalCompositeOperation = 'source-over';
 
 var x1s,x2s,y1s,y2s,line_coords,line_coords_length;
 var xx,xx1,yy,yy1;
-var coordinates=[[50,200],[200,50]];
+var coordinates=[[0,0],[0,0]];
 var INSIDE = 0; // 0000 
 var LEFT = 1;   // 0001 
 var RIGHT = 2;  // 0010 
@@ -25,7 +25,6 @@ var side_br=1;
 
 var iteration=0;
 
-//For Stmnting The Values
 var p1=document.getElementById("Stmnt1");
 var p2=document.getElementById("Stmnt2");
 var p3=document.getElementById("Stmnt3");
@@ -40,8 +39,8 @@ var p0=document.getElementById("Stmnt0");
 var s1,s2,e1,e2;
 
 
-//Function To Update The Default values And Overwrite the Line values
-function update() 
+//Function To init The Default values And Overwrite the Line values
+function init() 
 {
 	//Updating wrong Inputs
 
@@ -76,9 +75,19 @@ function update()
 	iteration=0;
 
 
-	context.clearRect(0,0,600,5);
+	context.clearRect(0,0,600,600);
 
-	p1.innerHTML="Let us begin!";
+   /*context.font = 'italic 18px Courier New';
+    context.textAlign = 'center';
+   // context. textBaseline = 'middle';
+    context.fillStyle = 'black';  // a color name or by using rgb/rgba/hex values
+    context.fillText('Let Us Begin!', 300, 300); // text and position*/
+   // alert("Let us begin!");
+    /*
+    context.fillText('Press Start to draw the line and clipping rectangle!', 310, 320); 
+    context.fillText('Press Next step and Previous Step to ',340,350);
+    context.fillText('understand the Cohen Sutherland algorithm',320,370);*/
+
 	p2.innerHTML="Demonstration of the cohen sutherland algorithm";
 	p3.innerHTML="";
 	p4.innerHTML="";
@@ -91,14 +100,12 @@ function update()
 
 	
 }  
-
-
-//Function For Converting the Line text coordinates to the coordinates stored in array	
-function initial()
+function begin()
 {
 
-	    update();
+	    init();
 	    //console.log(xx,xx1,yy,yy1);
+	    alert("Let us begin");
 		var i;
 		start=[document.getElementById("x1").value,document.getElementById("y1").value];
 		end=[document.getElementById("x2").value,document.getElementById("y2").value];
@@ -129,11 +136,11 @@ function next_iteration()
 	clip();
 	iteration++;
 }
-function highlightline(start_,end_){
+function highlightline(start,end){
 
                     context.beginPath();
-				    context.moveTo(start_[0], start_[1]);
-				    context.lineTo(end_[0], end_[1]);
+				    context.moveTo(start[0], start[1]);
+				    context.lineTo(end[0], end[1]);
 				
 				    context.strokeStyle = 'crimson';
 				    context.lineWidth = 2;
@@ -242,6 +249,16 @@ function clip()
 					//rep(line_mov);
 					if(xx==xx1)
 					{
+						if(xx>xmax)
+						{
+							alert("Rejected ,"+" "+"the bitwise AND of both outcodes of the endpoints is not 0 ");
+							p1.innerHTML = "Line is rejected, No part is inside the Bounding rectangle";
+					        p4.innerHTML = "Experiment Ends Here";
+					    }
+					    else if(xx>=xmin&& xx<=xmax)
+					    {
+					    context.clearRect(0,0,600,600);
+					    drawSquare();
 						context.beginPath();
 						context.moveTo(xx,ymin);
 		     			context.lineTo(xx1,ymax);
@@ -250,13 +267,15 @@ function clip()
 	         			context.stroke();
 						p1.innerHTML = "Final coordinates of the clipped line are";
 						p2.innerHTML ="("+xx+" , "+ymin+")"+"and"+"("+xx1+","+ymax+")";
-						context.fillText("("+xx1+","+ymin+")",xx1,ymin);
-						context.fillText("("+xx1+","+ymax+")",xx1,ymax);
+						//context.scale(2, 2);
+						context.fillText("("+xx1+","+ymin+")",xx1,ymin,100);
+						context.fillText("("+xx1+","+ymax+")",xx1,ymax,100);
+					   }
 
 					}
 					else
 					{
-					
+					alert("Rejected ,"+" "+"the bitwise AND of both outcodes of the endpoints is not 0 ");
 					p1.innerHTML = "Line is rejected, No part is inside the Bounding rectangle";
 					p4.innerHTML = "Experiment Ends Here";
                 }
@@ -356,11 +375,12 @@ function side_left(path,i)
 		drawLine(path[i],path[i+1],'left_side');
 		if(!check(path[i], 'left_side') && !check(path[i+1], 'left_side'))
 		{//No point Inside
+
 			endpoints = [path[i], path[i+1]];
 			var i1=find_intersections_oc(o1,endpoints);
 			var i2=find_intersections_oc(o2,endpoints);
 			//console.log(i1,i2);
-			highlightline(i1,i2);
+			//highlightline(i1,i2);
 		}
 		
 		if(check(path[i], 'left_side') && check(path[i+1], 'left_side'))
@@ -408,7 +428,7 @@ function side_left(path,i)
 			var i1=find_intersections_oc(o1,endpoints);
 			var i2=find_intersections_oc(o2,endpoints);
 			//console.log(i1,i2);
-			highlightline(i1,i2);
+			//highlightline(i1,i2);
 		}
 		
 		if(check(path[path.length-1], 'left_side') && check(path[0], 'left_side'))
@@ -562,7 +582,7 @@ function side_top(path,i)
 			var i1=find_intersections_oc(o1,endpoints);
 			var i2=find_intersections_oc(o2,endpoints);
 			//console.log(i1,i2);
-			highlightline(i1,i2);
+			//highlightline(i1,i2);
 		}
 		
 		if(check(path[path.length-1], 'top_side') && check(path[0], 'top_side'))
@@ -651,7 +671,7 @@ function side_right(path,i)
 		    var i1=find_intersections_oc(o1,endpoints);
 			var i2=find_intersections_oc(o2,endpoints);
 			//console.log(i1,i2);
-			highlightline(i1,i2);
+			//highlightline(i1,i2);
 		}
 		
 		if(check(path[i], 'right_side') && check(path[i+1], 'right_side'))
@@ -695,7 +715,7 @@ function side_right(path,i)
 			var i1=find_intersections_oc(o1,endpoints);
 			var i2=find_intersections_oc(o2,endpoints);
 			//console.log(i1,i2);
-			highlightline(i1,i2);
+			//highlightline(i1,i2);
 		}
 		
 		if(check(path[path.length-1], 'right_side') && check(path[0], 'right_side'))
@@ -795,7 +815,7 @@ function side_down(path,i)
 		    var i1=find_intersections_oc(o1,endpoints);
 			var i2=find_intersections_oc(o2,endpoints);
 			//console.log(i1,i2);
-			highlightline(i1,i2);
+			//highlightline(i1,i2);
 		}
 		
 		if(check(path[i], 'bottom_side') && check(path[i+1], 'bottom_side'))
@@ -852,7 +872,7 @@ function side_down(path,i)
 			endpoints = [path[i], path[0]];
 			var i1=find_intersections_oc(o1,endpoints);
 			var i2=find_intersections_oc(o2,endpoints);
-			highlightline(i1,i2);
+			//highlightline(i1,i2);
 		}
 		
 		if(check(path[path.length-1], 'bottom_side') && check(path[0], 'bottom_side'))
@@ -1179,10 +1199,11 @@ function drawSquare()
 	context.moveTo(dx, dy);
 	context.lineTo(ax, ay);
 	context.stroke();
+
+	//context.restore();
 	
 }
 
-//Draws Line For Each Iteration
 function drawLine(point1,point2,orientation)
 {
 	//context.fillText("("+point1[0]+","+point1[1]+")",point1[0]+2,point1[1]+2);
@@ -1224,8 +1245,8 @@ function drawGrid(){
 var r=255;
 var g=140;
 var b=0;
-var alpha = 0.33;
-context.lineWidth = 0.45;
+var alpha = 0.9;
+context.lineWidth = 1.0;
 for(let i=0;i<=600;i=i+200)
 {
 
@@ -1245,3 +1266,186 @@ for(let j=0;j<=600;j=j+200)
     context.stroke();
 }
 }
+
+$('.numLimit').on('keydown keyup', function(e){
+    if ($(this).val() > 600
+        && e.keyCode !== 46 // keycode for delete
+        && e.keyCode !== 8 // keycode for backspace
+       ) {
+       e.preventDefault();
+       $(this).val(600);
+    }
+});
+
+/*$(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+ 
+    $( "#opener" ).click(function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+  });*/
+
+/*var win = {
+    element: document.getElementById("Canvas"),
+    width: 600,
+    height: 600,
+    safeWidth: 590,
+    safeHeight: 590
+  },
+  
+  resizewin = function () {
+	
+    var viewport, newwinWidth, newwinHeight, newwinX, newwinY;
+					
+    // Get the dimensions of the viewport
+    viewport = {
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+
+    // Determine win size
+    if (win.height / win.width > viewport.height / viewport.width) {
+      if (win.safeHeight / win.width > viewport.height / viewport.width) {
+          // A
+          newwinHeight = viewport.height * win.height / win.safeHeight;
+          newwinWidth = newwinHeight * win.width / win.height;
+      } else {
+          // B
+          newwinWidth = viewport.width;
+          newwinHeight = newwinWidth * win.height / win.width;
+      }
+    } else {
+      if (win.height / win.safeWidth > viewport.height / viewport.width) {
+        // C
+        newwinHeight = viewport.height;
+        newwinWidth = newwinHeight * win.width / win.height;
+      } else {
+        // D
+        newwinWidth = viewport.width * win.width / win.safeWidth;
+        newwinHeight = newwinWidth * win.height / win.width;
+      }
+    }
+  
+    win.element.style.width = newwinWidth + "px";
+    win.element.style.height = newwinHeight + "px";
+			
+    newwinX = (viewport.width - newwinWidth)/4;
+    newwinY = (viewport.height - newwinHeight)/4;
+			
+    // Set the new padding of the win so it will be centered
+    //win.element.style.margin = newwinY + "px " + newwinX + "px";
+  };
+
+window.addEventListener("resize", resizewin);
+resizewin();*/
+"use strict";
+
+function main() {
+  var canvas = document.getElementById("Canvas");
+  var gl = canvas.getContext("webgl");
+  if (!gl) {
+    return;
+  }
+
+  // setup GLSL program
+  var program = webglUtils.createProgramFromScripts(gl, ["2d-vertex-shader", "2d-fragment-shader"]);
+  gl.useProgram(program);
+
+  // look up where the vertex data needs to go.
+  var positionAttributeLocation = gl.getAttribLocation(program, "a_position");
+
+  // lookup uniforms
+  var colorLocation = gl.getUniformLocation(program, "u_color");
+  var matrixLocation = gl.getUniformLocation(program, "u_matrix");
+
+  // Create a buffer to put three 2d clip space points in
+  var positionBuffer = gl.createBuffer();
+
+  // Bind it to ARRAY_BUFFER (think of it as ARRAY_BUFFER = positionBuffer)
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+
+  requestAnimationFrame(drawScene);
+
+  // Draw the scene.
+  function drawScene(now) {
+    now *= 0.001; 
+
+    resize(gl.canvas);
+
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+    // Clear the canvas.
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    // Tell it to use our program (pair of shaders)
+    gl.useProgram(program);
+
+    // Turn on the attribute
+    gl.enableVertexAttribArray(positionAttributeLocation);
+
+    // Bind the position buffer.
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+
+    // Tell the attribute how to get data out of positionBuffer (ARRAY_BUFFER)
+    var size = 2;          // 2 components per iteration
+    var type = gl.FLOAT;   // the data is 32bit floats
+    var normalize = false; // don't normalize the data
+    var stride = 0;        // 0 = move forward size * sizeof(type) each iteration to get the next position
+    var offset = 0;        // start at the beginning of the buffer
+    gl.vertexAttribPointer(
+        positionAttributeLocation, size, type, normalize, stride, offset);
+
+    // Set Geometry.
+    var radius = Math.sqrt(gl.canvas.width * gl.canvas.width + gl.canvas.height * gl.canvas.height) * 0.5;
+    var angle = now;
+    var x = Math.cos(angle) * radius;
+    var y = Math.sin(angle) * radius;
+    var centerX = gl.canvas.width  / 2;
+    var centerY = gl.canvas.height / 2;
+    setGeometry(gl, centerX + x, centerY + y, centerX - x, centerY - y);
+
+    // Compute the matrices
+    var projectionMatrix = m3.projection(gl.canvas.width, gl.canvas.height);
+
+    // Set the matrix.
+    gl.uniformMatrix3fv(matrixLocation, false, projectionMatrix);
+
+    // Draw in red
+    gl.uniform4fv(colorLocation, [1, 0, 0, 1]);
+
+    // Draw the geometry.
+    var primitiveType = gl.LINES;
+    var offset = 0;
+    var count = 2;
+    gl.drawArrays(primitiveType, offset, count);
+
+    requestAnimationFrame(drawScene);
+  }
+
+  function resize(canvas) {
+    // Lookup the size the browser is displaying the canvas.
+    var displayWidth  = canvas.clientWidth;
+    var displayHeight = canvas.clientHeight;
+
+    // Check if the canvas is not the same size.
+    if (canvas.width  !== displayWidth ||
+        canvas.height !== displayHeight) {
+
+      // Make the canvas the same size
+      canvas.width  = 2*displayWidth;
+      canvas.height = displayHeight;
+    }
+  }
+}
+
+main();

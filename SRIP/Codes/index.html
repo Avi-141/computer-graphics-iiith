@@ -9,8 +9,31 @@
 </head>
 <body>
         <p>A fast line clipping algorithm in JS.</p>
-    <a href="LineClipping.html" target="_parent"><button class="grid">Go back to the experiment!</button></a>
-   <canvas id="canvas"  width="600" height="600" style="border:2px solid #c3c3c3;"></canvas>
+    There will be multiple lines , whose coordinates are randomized. <br>If any part of the line intersects the given canvas ,<br> it will be highlighted in black and the clipped part will shadow out.
+   <canvas id="canvas" style="border:2px solid #c3c3c3;"></canvas><br><br>
+   <script id="2d-vertex-shader" type="x-shader/x-vertex">
+                  attribute vec2 a_position;
+
+                   uniform mat3 u_matrix;
+
+            void main() {
+             // Multiply the position by the matrix.
+               gl_Position = vec4((u_matrix * vec3(a_position, 1)).xy, 0, 1);
+              }
+              </script>
+<!-- fragment shader -->
+<script id="2d-fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+uniform vec4 u_color;
+
+void main() {
+   gl_FragColor = u_color;
+}
+</script>
+			<script src="https://webglfundamentals.org/webgl/resources/webgl-utils.js"></script>
+            <script src="https://webglfundamentals.org/webgl/resources/m3.js"></script>
+    <a href="LineClipping.html" target="_parent">Go back to the experiment!</a><br><br>
     <script src="script.js"></script>
 </body>
 </html>
