@@ -1,6 +1,9 @@
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+var Canvas = document.getElementById("Canvas");
+var ctx = Canvas.getContext("2d");
 
+//alert("There will be multiple lines , whose coordinates are randomized.If any part of the line intersects the given Canvas ,it will be highlighted in black and the clipped part will shadow out.");
+/*var dialog = $(alert).dialog('');
+setTimeout(function() { dialog.dialog(''); }, time);*/
 class Particle {
     constructor(x, y, vx, vy) {
         this.x = x;
@@ -14,11 +17,11 @@ class Particle {
             return Math.floor(min + Math.random() * (max - min));
         }
 
-        var x = random(0.0, window.innerWidth);
-        var y = random(0.0, window.innerHeight);
+        var x = random(0.0, window.innerWidth/1.1);
+        var y = random(0.0, window.innerHeight/1.1);
 
-        var vx = random(-3.0, 4.0);
-        var vy = random(-3.0, 4.0);
+        var vx = random(-3.03, 4.0);
+        var vy = random(-3.03, 4.0);
 
         return new Particle(x, y, vx, vy);
     }
@@ -70,25 +73,29 @@ var factor = getFactor();
 
 var lines = createRandomLines(6);
 
-var frame_width = 200.;
-var frame_height = 200.;
+//var frame_width = (window.innerWidth-Canvas.width)/4;
+//var frame_height =(window.innerHeight-Canvas.height)/3;
+
+var frame_height=280;
+var frame_width=250;
 
 function loop() {
     clear();
     draw();
     update();
-   queue();
+    queue();
+
 }
 
 function clear() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, Canvas.width, Canvas.height);
 }
 
 function draw() {
-    canvas.width = window.innerWidth * factor;
-    canvas.height = window.innerHeight * factor;
-    canvas.style.width = `${window.innerWidth}px`;
-    canvas.style.height = `${window.innerHeight}px`;
+    Canvas.width = window.innerWidth * factor;
+    Canvas.height = window.innerHeight * factor;
+    Canvas.style.width = `${window.innerWidth}px`;
+    Canvas.style.height = `${window.innerHeight}px`;
     ctx.scale(factor, factor);
 
     var frame_left = (window.innerWidth - frame_width) * 0.5;
@@ -147,11 +154,63 @@ function queue() {
 }
 
 loop();
-"use strict";
+//window.addEventListener("resize", resizewin);
+//resizewin();
 
-function main() {
-  // Get A WebGL context
-  /** @type {HTMLCanvasElement} */
+var win = {
+    element: document.getElementById("Canvas"),
+    width: 1280,
+    height: 920,
+    safeWidth: 1024,
+    safeHeight: 720
+  },
+  
+  resizewin = function () {
+    
+    var viewport, newwinWidth, newwinHeight, newwinX, newwinY;
+                    
+    // Get the dimensions of the viewport
+    viewport = {
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+
+    // Determine win size
+    if (win.height / win.width > viewport.height / viewport.width) {
+      if (win.safeHeight / win.width > viewport.height / viewport.width) {
+          // A
+          newwinHeight = viewport.height * win.height / win.safeHeight;
+          newwinWidth = newwinHeight * win.width / win.height;
+      } else {
+          // B
+          newwinWidth = viewport.width;
+          newwinHeight = newwinWidth * win.height / win.width;
+      }
+    } else {
+      if (win.height / win.safeWidth > viewport.height / viewport.width) {
+        // C
+        newwinHeight = viewport.height;
+        newwinWidth = newwinHeight * win.width / win.height;
+      } else {
+        // D
+        newwinWidth = viewport.width * win.width / win.safeWidth;
+        newwinHeight = newwinWidth * win.height / win.width;
+      }
+    }
+  
+    win.element.style.width = newwinWidth + "px";
+    win.element.style.height = newwinHeight + "px";
+            
+    newwinX = (viewport.width - newwinWidth)/2;
+    newwinY = (viewport.height - newwinHeight)/2;
+            
+    // Set the new padding of the win so it will be centered
+    //win.element.style.margin = newwinY + "px " + newwinX + "px";
+  };
+
+window.addEventListener("resize", resizewin);
+resizewin();
+/*function main() {
   var canvas = document.getElementById("Canvas");
   var gl = canvas.getContext("webgl");
   if (!gl) {
@@ -179,7 +238,7 @@ function main() {
 
   // Draw the scene.
   function drawScene(now) {
-    now *= 0.001; // convert to seconds
+    now *= 0.001; 
 
     resize(gl.canvas);
 
@@ -243,10 +302,11 @@ function main() {
         canvas.height !== displayHeight) {
 
       // Make the canvas the same size
-      canvas.width  = displayWidth;
+      canvas.width  = 2*displayWidth;
       canvas.height = displayHeight;
     }
   }
 }
 
 main();
+*/

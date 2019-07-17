@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+    <title>USER GUIDE</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<p align="right" style="color:royalblue"><a href="LineClipping.html" target="_parent" style="color:royalblue">BACK TO EXPERIMENT</a></p>
+<strong><h3 style="color:crimson"><u>Idea behind the algorithm</u></h3></strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Cohen–Sutherland algorithm is a computer-graphics algorithm for line clipping.
+It uses a Divide and Conquer strategy. 
+The algorithm divides a two-dimensional space into 9 regions
+and then efficiently determines the lines &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspand portions of lines that are visible in the central region of interest.( in our case , the bounding rectangle).<br><br>
+
+<strong>The algorithm includes, excludes or partially includes the line based on whether</strong>: <br>
+
+<strong>•&nbsp;Both endpoints are in the viewport region (bitwise OR of endpoints = 00)</strong><strong>
+<u>trivial accept</u></strong><br><br>
+<strong>•&nbsp;Both endpoints share at least one non-visible region,
+which implies that the line does not cross the visible region.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(bitwise AND of endpoints ≠ 0):</strong><strong>&nbsp;&nbsp;<u>trivial reject.</u></strong><br><br>
+<strong>•Both endpoints are in different regions:<br></strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In case of this <strong>nontrivial situation</strong> the algorithm finds one of the two points that is outside the viewport region (there will be at least one point outside).<br>
+<strong></strong> &nbsp;&nbsp;&nbsp;&nbsp;<strong>The intersection of the outpoint and extended viewport border is then calculated (i.e. with the parametric equation for the line), and this new point replaces the outpoint.</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>The algorithm repeats until a trivial accept or reject occurs.</strong>
+
+<strong><h3 style="color:crimson"><u>User Guide to run the experiment:</u></h3></strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click on<strong>"START"</strong>to draw the bounding rectangle(viewport) and the line to be clipped.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A <strong>grid</strong> will also be drawn which will divide the canvas into <strong>9 regions</strong>
+which correspond to <strong>9 outcodes</strong>.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You will see an alert "LET US BEGIN!". Pleas click ok and proceed <br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click on<strong>"NEXT STEP"</strong>to start the algorithm .<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Keep on clicking NEXT STEP till the final coordinates are displayed on the left and the line which would be highlighted in red.<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The iteration starts from the left side of the square and moves in clockwise direction .<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Whenever the line is clipped w.r.t a side, the side is highlighted in blue</strong> and<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>new coordinates of the line  are shown on the canvas and corresponding outcodes are displayed on the left.</strong><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The <strong>final line, if accepted , is </strong><strong>highlited in dark red</strong>.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If the line is <strong>rejected</strong> , an <strong>alert</strong> for the same is generated. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click on<strong>"PREV STEP"</strong> to go back to the previous state of the algorithm.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p style="color:crimson"><u><strong>Explaination for the Multiple line clipping animation</strong></u></p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There will be multiple lines , whose coordinates are randomized.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If any part of the line intersects the given Canvas ,it will be highlighted in black and the clipped part will shadow out.
+
+</body>
+</html>

@@ -233,12 +233,20 @@ function clip()
 		
 		case 5: if(line_mov.length!=0)
 				{
+					p1.style.color="orangered";
 					p1.innerHTML = "Final coordinates of the clipped line are";
 					//console.log(line_mov);
 					if(line_mov.length===4)
-                    p2.innerHTML ="("+line_mov[0][0]+" , "+line_mov[0][1]+")"+"and"+"("+line_mov[2][0]+","+line_mov[2][1]+")"
-                    else 
-                    	 p2.innerHTML ="("+line_mov[0][0]+" , "+line_mov[0][1]+") " + " and " + " ("+line_mov[1][0]+","+line_mov[1][1]+")"
+					{
+						p2.style.color='red';
+                     p2.innerHTML ="("+line_mov[0][0]+" , "+line_mov[0][1]+")"+" & "+"("+line_mov[2][0]+","+line_mov[2][1]+")";
+                     }
+                    else
+                    { 
+                    	p2.style.color='red';
+                    	 p2.innerHTML ="("+line_mov[0][0]+" , "+line_mov[0][1]+") " + " & " + " ("+line_mov[1][0]+","+line_mov[1][1]+")";
+                    	}
+                    p4.style.color="orangered";
 					p4.innerHTML = "You can now enter new values!";
 					p5.innerHTML = " ";
 					p6.innerHTML = "";
@@ -265,6 +273,7 @@ function clip()
 		     			context.lineWidth = 2;
 	         			context.strokeStyle = 'crimson';
 	         			context.stroke();
+	         			p1.style.color="Indigo";
 						p1.innerHTML = "Final coordinates of the clipped line are";
 						p2.innerHTML ="("+xx+" , "+ymin+")"+"and"+"("+xx1+","+ymax+")";
 						//context.scale(2, 2);

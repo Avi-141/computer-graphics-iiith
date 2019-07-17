@@ -8,10 +8,14 @@
     <script src="Fast_clip.js"></script>
 </head>
 <body>
-        <p>A fast line clipping algorithm in JS.</p>
-    There will be multiple lines , whose coordinates are randomized. <br>If any part of the line intersects the given canvas ,<br> it will be highlighted in black and the clipped part will shadow out.
-   <canvas id="canvas" style="border:2px solid #c3c3c3;"></canvas><br><br>
-   <script id="2d-vertex-shader" type="x-shader/x-vertex">
+
+        <p align="center">A Multiple Line Clipping Algorithm in JS.</p>
+       <!-- <p>"There will be multiple lines , whose coordinates are randomized.<br>Part of the Line intersecting the given canvas will be highlighted in black.<br>The clipped part will shadow out."</p>-->
+
+        <p align="center" style="color:black">Based on <a href="https://link.springer.com/article/10.1007%2Fs00371-005-0305-3" target="_parent">This Paper</a><br></p>
+    <!--<div class="column">-->
+   <canvas id="Canvas" style="border:2px solid #c3c3c3;"></canvas>
+ <!--<script id="2d-vertex-shader" type="x-shader/x-vertex">
                   attribute vec2 a_position;
 
                    uniform mat3 u_matrix;
@@ -21,7 +25,8 @@
                gl_Position = vec4((u_matrix * vec3(a_position, 1)).xy, 0, 1);
               }
               </script>
-<!-- fragment shader -->
+ !--fragment shader
+
 <script id="2d-fragment-shader" type="x-shader/x-fragment">
 precision mediump float;
 
@@ -30,10 +35,10 @@ uniform vec4 u_color;
 void main() {
    gl_FragColor = u_color;
 }
-</script>
+</script>-->
 			<script src="https://webglfundamentals.org/webgl/resources/webgl-utils.js"></script>
             <script src="https://webglfundamentals.org/webgl/resources/m3.js"></script>
-    <a href="LineClipping.html" target="_parent">Go back to the experiment!</a><br><br>
+    <a href="LineClipping.html" target="_parent"><p  align="center" style="color:DARKBLUE ">Go back to the experiment!</p></a><br>
     <script src="script.js"></script>
 </body>
 </html>
