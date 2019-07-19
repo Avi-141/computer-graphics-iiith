@@ -20,8 +20,8 @@ class Particle {
         var x = random(0.0, window.innerWidth/1.1);
         var y = random(0.0, window.innerHeight/1.1);
 
-        var vx = random(-3.03, 4.0);
-        var vy = random(-3.03, 4.0);
+        var vx = random(-2.80, 4.0);
+        var vy = random(-2.80, 4.0);
 
         return new Particle(x, y, vx, vy);
     }

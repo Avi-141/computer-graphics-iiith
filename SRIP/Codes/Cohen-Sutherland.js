@@ -372,6 +372,9 @@ function side_left(path,i)
 			p2.innerHTML = "Line has been rejected";
 			return;
 		}*/
+	p3.style.color="darkblack";
+	p4.style.color="darkblack";
+	p2.style.color="darkorchid";
 	p2.innerHTML = "Against Left Side";
 	
 	if(i>=0 && i<path.length-1)

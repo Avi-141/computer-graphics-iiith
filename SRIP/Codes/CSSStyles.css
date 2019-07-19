@@ -11,9 +11,11 @@ body {
   background-color:snow;
 }
 .column {
+  padding-left: 15px;
   float: left;
-  width: 33.4%;
+  width: 33.33%;
   height: 100%; 
+
 }
 /*#columns {
  /* float: left;/
@@ -22,11 +24,15 @@ body {
   background-color:ghostwhite;
 }*/
 h2{
-  color:darkblue
+  color:darkblue;
 }
 h4{
   color:firebrick;
 }
+.row{
+  padding-left: 15px;
+}
+
 .row:after {
   content: "";
   display: table;
@@ -37,13 +43,18 @@ h4{
   height: 150%;
 	background:ghostwhite;
 }
+#column121 {
+
+  height: 150%;
+  background:ghostwhite;
+}
 
 #column2 {
 	background: white;
 }
 
 #Canvas{
-  /*padding :10px;*/
+
 	background:white;
   width:100%;
   
@@ -107,9 +118,8 @@ h4{
 
 
 div.theMiddle{
-  width : 20%;
-  height:150%;
   float: left;
+  padding-left:8px;
   /*height: inherit;*//
   background-color : gray;  
   text-align: center;

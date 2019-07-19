@@ -4,16 +4,52 @@
 	<title>Clipping Polygon</title> 
 	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=yes">
     <meta name="HandheldFriendly" content="true">
-	<link rel="stylesheet" type="text/css" href="CSSStyles.css"><!-- Linking the CSS file -->
+	<link rel="stylesheet" type="text/css" href="CSSStyles.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	
 </head>
 <body>
 		<p style="color:steelblue">For a multiple line clipping demo<br></p>
-	   <a href="index.html" target="_parent" style="color:royalblue">CLICK HERE!</a>
+	   <a href="index.html" target="_parent" style="color:blue">CLICK HERE!</a>
 	<div class="row">
     <h2><center>&nbsp;&nbsp;&nbsp;&nbsp;Clipping Line-Cohen SutherLand Algorithm</center></h2>
-	<div class="column" id="column1"> <!-- Dividing the Page into left part-->
+    	<div class="column" id="column2">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+			<canvas id="Canvas"  width="600" height="600" style="border:2px solid #c3c3c3;">
+			</canvas>
+			<!--<script src="ResponsivePage.js"></script>-->
+			<script id="2d-vertex-shader" type="x-shader/x-vertex">
+                  attribute vec2 a_position;
+
+                   uniform mat3 u_matrix;
+
+            void main() {
+             // Multiply the position by the matrix.
+               gl_Position = vec4((u_matrix * vec3(a_position, 1)).xy, 0, 1);
+              }
+              </script>
+<!-- fragment shader -->
+<script id="2d-fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+uniform vec4 u_color;
+
+void main() {
+   gl_FragColor = u_color;
+}
+</script>
+			<script src="https://webglfundamentals.org/webgl/resources/webgl-utils.js"></script>
+            <script src="https://webglfundamentals.org/webgl/resources/m3.js"></script>
+			 <script src='https://code.jquery.com/jquery-1.12.1.min.js'></script>
+			 <script src='https://code.jquery.com/jquery-2.0.2.min.js'></script>
+
+		<script src="Cohen-Sutherland.js"></script> <!-- Linking the Javascript File -->
+	</div>
+	<div class="column" id="column121"> <!-- Dividing the Page into left part-->
 		<form>
+			<br>
 			<p style="color:black">Enter The Dimensions of Rectangle   <br>
 			(The coordinates should be diagonal endpoints)<br><br> 
 			Maximum permissible value is (500,500)<br><br></p>
@@ -49,43 +85,13 @@
 		<script src="Cohen-Sutherland.js"></script> 
 
 	</div>
-	<div class="column" id="column2">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-			<canvas id="Canvas"  width="600" height="600" style="border:2px solid #c3c3c3;">
-			</canvas>
-			<!--<script src="ResponsivePage.js"></script>-->
-			<script id="2d-vertex-shader" type="x-shader/x-vertex">
-                  attribute vec2 a_position;
 
-                   uniform mat3 u_matrix;
-
-            void main() {
-             // Multiply the position by the matrix.
-               gl_Position = vec4((u_matrix * vec3(a_position, 1)).xy, 0, 1);
-              }
-              </script>
-<!-- fragment shader -->
-<script id="2d-fragment-shader" type="x-shader/x-fragment">
-precision mediump float;
-
-uniform vec4 u_color;
-
-void main() {
-   gl_FragColor = u_color;
-}
-</script>
-			<script src="https://webglfundamentals.org/webgl/resources/webgl-utils.js"></script>
-            <script src="https://webglfundamentals.org/webgl/resources/m3.js"></script>
-			 <script src='https://code.jquery.com/jquery-1.12.1.min.js'></script>
-			 <script src='https://code.jquery.com/jquery-2.0.2.min.js'></script>
-
-		<script src="Cohen-Sutherland.js"></script> <!-- Linking the Javascript File -->
-	</div>
-   <div class="theMiddle" id="column1">
+   <div class="row" id="column1">
    	<form>
-   		  &nbsp;<p>To begin the experiment click on 
+   		<br>
+           <p>To begin the experiment click on 
    		   <br></p>
-			<button type="button" class="initt" onclick="begin()";>START</button><br><br><br>
+			<button type="button" class="btn btn-primary" onclick="begin()";>START</button><br><br><br>
 			<!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
             <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
             <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
@@ -94,17 +100,16 @@ void main() {
             </div>
              <button id="opener">Start</button><br>-->
             <p>For an iterative clipping process, click on</p>
-            <br>
-			<button type="button" class="square" onclick="next_iteration()">NEXT STEP</button><br><br><br>
+			<button type="button" class="btn btn-primary" onclick="next_iteration()">NEXT STEP</button><br><br><br>
 			<p>
-				To go back to the previous state of the algorithm , click on
-			</p><br>
-			<button type="button" class="line" onclick="prev_iteration()">PREV STEP</button><br><br>
+				For the previous state of the algorithm , click on
+			</p>
+			<button type="button" class="btn btn-primary" onclick="prev_iteration()">PREV STEP</button><br><br><br>
+			   		<p align="left" style="color:black">Link to :<a href="Ref.html" target="_parent" style="color:royalblue">USER GUIDE</a></p>
 		</form>
 	</div>
 	
 	</div>
-	<p align="right" style="color:royalblue"><a href="Ref.html" target="_parent" style="color:royalblue">LINK TO USER GUIDE</a></p>
 
 </body>
 </html>
